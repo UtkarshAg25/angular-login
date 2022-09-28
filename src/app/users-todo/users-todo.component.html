@@ -1,0 +1,154 @@
+<div class="sticky-top" style="background-color: ghostwhite">
+  <app-header [userName]="userDetails.name"></app-header>
+  <div class="row">
+    <div
+      class="text-center col-3 p-2"
+      type="button"
+      data-toggle="modal"
+      data-target="#Demo1"
+      style="padding: 10px; font-size: large; margin: right 10px"
+    >
+      <app-reuse-button
+        [text]="'Add New Todos'"
+        btnClass="btn-primary"
+        (click)="newModalView()"
+      ></app-reuse-button>
+    </div>
+    <div class="container" class="text-center col-9">
+      <div
+        style="padding: 10px; font-size: large"
+        class="form-check m-2 border border-2 rounded bg-success"
+      >
+        <input
+          style="margin: 5px"
+          class="form-check-input ml-2"
+          type="checkbox"
+          [(ngModel)]="completedTodos"
+          (ngModelChange)="myTodoList()"
+          [value]="true"
+          id="myCheckbox"
+        />
+        <label class="form-check-label" for="myCheckbox" style="color: white">
+          <strong> See The Completed Todos List Here</strong>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row m-2" style="background-color: bisque">
+  <div class="text-center col-sm-12 col-lg-3 col-md-2 col-md-2 col-xl-2">
+    <div class="m-2 bg-info p-2" style="color: white">
+      <strong>User ID</strong>
+    </div>
+  </div>
+  <div class="text-center col-sm-12 col-lg-3 col-md-2 col-md-2 col-xl-2">
+    <div class="m-2 bg-info p-2" style="color: white"><strong>ID</strong></div>
+  </div>
+  <div class="text-center col-sm-12 col-lg-3 col-md-3 col-md-3 col-xl-3">
+    <div class="m-2 bg-info p-2" style="color: white">
+      <strong>Title</strong>
+    </div>
+  </div>
+  <div class="text-center col-sm-12 col-lg-2 col-md-2 col-md-2 col-xl-2">
+    <div class="m-2 bg-info p-2" style="color: white">
+      <strong>Completed</strong>
+    </div>
+  </div>
+  <div class="text-center col-sm-12 col-lg-3 col-md-3 col-md-3 col-xl-3">
+    <div class="m-2 bg-info p-2" style="color: white">
+      <strong>Action</strong>
+    </div>
+  </div>
+</div>
+<div
+  *ngFor="let item of todosList"
+  class="row m-2"
+  style="background-color: ghostwhite"
+>
+  <div class="text-center col-sm-12 col-lg-2 col-md-2 col-md-2 col-xl-2">
+    <div class="m-2 bg-ghostwhite p-2">{{ item.userId }}</div>
+  </div>
+  <div class="text-center col-sm-12 col-lg-2 col-md-2 col-md-2 col-xl-2">
+    <div class="m-2 bg-ghostwhite p-2">{{ item.id }}</div>
+  </div>
+  <div class="text-center col-sm-12 col-lg-3 col-md-3 col-md-3 col-xl-3">
+    <div class="m-2 bg-ghostwhite p-2">{{ item.title }}</div>
+  </div>
+  <div class="text-center col-sm-12 col-lg-2 col-md-2 col-md-2 col-xl-2">
+    <div class="m-2 bg-ghostwhite p-2">
+      {{ item.completed ? "Completed" : "Not Completed" }}
+    </div>
+  </div>
+  <div class="text-center col-sm-12 col-lg-3 col-md-3 col-md-3 col-xl-3">
+    <div class="m-2 bg-ghostwhite p-2">
+      <app-reuse-button
+        style="margin-right: 10px"
+        [text]="'Edit'"
+        btnClass="btn-success"
+        (click)="editUser()"
+      ></app-reuse-button>
+      <app-reuse-button
+        [text]="'Delete'"
+        btnClass="btn-danger"
+        (click)="deleteUser()"
+      ></app-reuse-button>
+      <!-- <button Class="btn btn-danger" (click)="deleteUser()">Delete</button> -->
+    </div>
+  </div>
+</div>
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: display }"
+  style="background: rgba(0, 0, 0, 0.4)"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Todos</h4>
+        <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          (click)="onClose()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addTodoList" (ngSubmit)="submitList()">
+          <div class="form-group m-2">
+            <input
+              type="number"
+              formControlName="id"
+              placeholder="Enter ID"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group m-2">
+            <input
+              type="text"
+              formControlName="title"
+              placeholder="Enter Title"
+              class="form-control"
+            />
+          </div>
+          <button
+            [disabled]="!addTodoList.valid"
+            type="submit"
+            class="btn btn-primary"
+          >
+            Save
+          </button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="onClose()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

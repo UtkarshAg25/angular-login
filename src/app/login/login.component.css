@@ -1,0 +1,26 @@
+.card {
+    margin-top: 10px;
+    border: none;
+    width: 500px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgb(34,193,195);
+    background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+    
+}
+
+
+.card h1, h6 {
+ color:black;
+}
+
+label {
+    color:black;
+}
+
+input.ng-invalid.ng-touched{
+    border: red 1px solid;
+}

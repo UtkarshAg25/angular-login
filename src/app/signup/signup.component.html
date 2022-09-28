@@ -1,0 +1,86 @@
+<div
+  class="bg-image"
+  style="background-image: url('../../assets/istock.jpg'); height: 100vh"
+></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="text-center">
+          <h1>Signup</h1>
+          <h6>Register Here!!</h6>
+        </div>
+        <div class="form">
+          <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <app-reactive-inputs
+                formControlName="id"
+                [label]="'Id'"
+                [type]="'number'"
+              >
+              </app-reactive-inputs>
+            </div>
+
+            <div class="form-group">
+              <app-reactive-inputs
+                formControlName="firstName"
+                [label]="'First Name'"
+                [type]="'text'"
+              >
+              </app-reactive-inputs>
+            </div>
+
+            <div class="form-group">
+              <app-reactive-inputs
+                formControlName="lastName"
+                [label]="'Last Name'"
+                [type]="'text'"
+              >
+              </app-reactive-inputs>
+            </div>
+
+            <div class="form-group">
+              <app-reactive-inputs
+                formControlName="email"
+                [label]="'Email'"
+                [type]="'email'"
+              >
+              </app-reactive-inputs>
+            </div>
+
+            <div class="form-group">
+              <app-reactive-inputs
+                formControlName="password"
+                [label]="'Password'"
+                [type]="'password'"
+              >
+              </app-reactive-inputs>
+            </div>
+
+            <div class="form-group">
+              <app-reactive-inputs
+                formControlName="reenterpassword"
+                [label]="'Confirm-Password'"
+                [type]="'password'"
+              >
+              </app-reactive-inputs>
+            </div>
+
+            <div>
+              <button
+                style="margin-top: 10px"
+                [disabled]="signupForm.invalid"
+                type="submit"
+                class="btn btn-primary"
+                (click)="onSubmit()"
+              >
+                Signup
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

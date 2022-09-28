@@ -1,0 +1,53 @@
+<div
+  class="bg-image"
+  style="background-image: url('../../assets/blue.jpg'); height: 100vh"
+></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="text-center">
+          <h1>Login</h1>
+          <h6>Login Here!!</h6>
+        </div>
+        <div>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <app-reactive-inputs
+                formControlName="username"
+                [label]="'Username'"
+                [type]="'text'"
+              >
+              </app-reactive-inputs>
+            </div>
+
+            <div class="form-group">
+              <app-reactive-inputs
+                formControlName="password"
+                [label]="'Password'"
+                [type]="'password'"
+                [status]="
+                  loginForm.get('password').invalid ? 'error' : 'success'
+                "
+              >
+              </app-reactive-inputs>
+            </div>
+
+            <div>
+              <button
+                [disabled]="loginForm.invalid"
+                style="margin-top: 10px"
+                type="submit"
+                class="btn btn-primary"
+                (click)="onSubmit()"
+              >
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
